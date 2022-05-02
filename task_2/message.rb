@@ -1,3 +1,4 @@
+# require_relative 'truncate'
 require_relative 'truncate'
 require 'securerandom'
 
@@ -6,12 +7,14 @@ class Message
  
   attr_accessor :id, :body
 
-  truncate :body, length: 120  
+  truncate1 :body, length: 120  
  
  
   def initialize(body)
     @id = SecureRandom.uuid
+    puts "1"
     self.body = body
+    puts "3"
   end
 
 
