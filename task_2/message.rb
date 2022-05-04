@@ -12,9 +12,7 @@ class Message
  
   def initialize(body)
     @id = SecureRandom.uuid
-    puts "1"
     self.body = body
-    puts "3"
   end
 
 
