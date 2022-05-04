@@ -15,15 +15,8 @@ class ArticlesController < ApplicationController
     # Next line of code we know will take some time to process
     # In real life this could be a call for example to generate a report, perform a complex SQL query etc.
     # For the sake of testing the method contains only sleep(20)
-
-    prepared_params = ExternalCall.run_complex_sql_query(article_params)
-    @article = Article.new(prepared_params)
-
-    if @article.save
-      redirect_to @article
-    else
-      render :new, status: :unprocessable_entity
-    end
+    ReportGenerateJob.perform_later(article_params)
+    render :text, "Article will be created soon......."
   end
 
   private
